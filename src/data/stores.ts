@@ -37,9 +37,7 @@ export const stores: Store[] = [
     address: "C.C. La Coulée Verte, ZAC Dothémare",
     postalCode: "97139",
     phone: "05 90 32 63 63",
-    hours: [
-      { label: "Lun. au sam.", value: "9h00 – 18h30" },
-    ],
+    hours: [{ label: "Lun. au sam.", value: "9h00 – 18h30" }],
     hasSav: false,
   },
   {
@@ -50,9 +48,7 @@ export const stores: Store[] = [
     address: "ZAC de Damencourt",
     postalCode: "97160",
     phone: "05 90 32 63 63",
-    hours: [
-      { label: "Lun. au sam.", value: "9h00 – 18h30" },
-    ],
+    hours: [{ label: "Lun. au sam.", value: "9h00 – 18h30" }],
     hasSav: false,
   },
 ];

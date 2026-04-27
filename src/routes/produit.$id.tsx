@@ -6,6 +6,7 @@ import { getProduct, getRelated, formatPrice, type Product } from "@/data/produc
 import { stores, type StoreId } from "@/data/stores";
 import { ProductCard } from "@/components/ProductCard";
 import { ReservationModal } from "@/components/ReservationModal";
+import fallbackProductImage from "@/assets/hero-store.jpg";
 
 export const Route = createFileRoute("/produit/$id")({
   loader: ({ params }) => {
@@ -14,19 +15,23 @@ export const Route = createFileRoute("/produit/$id")({
     return { product };
   },
   head: ({ loaderData }) => ({
-    meta: loaderData ? [
-      { title: `${loaderData.product.name} — PC Leader Caraïbes` },
-      { name: "description", content: loaderData.product.description.slice(0, 160) },
-      { property: "og:title", content: loaderData.product.name },
-      { property: "og:description", content: loaderData.product.description.slice(0, 160) },
-      { property: "og:image", content: loaderData.product.image },
-    ] : [],
+    meta: loaderData
+      ? [
+          { title: `${loaderData.product.name} — PC Leader Caraïbes` },
+          { name: "description", content: loaderData.product.description.slice(0, 160) },
+          { property: "og:title", content: loaderData.product.name },
+          { property: "og:description", content: loaderData.product.description.slice(0, 160) },
+          { property: "og:image", content: loaderData.product.image },
+        ]
+      : [],
   }),
   component: ProductPage,
   notFoundComponent: () => (
     <div className="container-wide py-20 text-center">
       <h1 className="font-display text-3xl font-bold">Produit introuvable</h1>
-      <Button asChild className="mt-6"><Link to="/catalogue">Voir le catalogue</Link></Button>
+      <Button asChild className="mt-6">
+        <Link to="/catalogue">Voir le catalogue</Link>
+      </Button>
     </div>
   ),
 });
@@ -39,28 +44,49 @@ function ProductPage() {
 
   return (
     <div className="container-wide py-8">
-      <Link to="/catalogue" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary">
+      <Link
+        to="/catalogue"
+        className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary"
+      >
         <ArrowLeft className="h-4 w-4" /> Retour au catalogue
       </Link>
 
       <div className="mt-4 grid gap-8 lg:grid-cols-2">
         <div className="overflow-hidden rounded-2xl border bg-surface shadow-card">
-          <img src={product.image} alt={product.name} className="aspect-square w-full object-cover" />
+          <img
+            src={product.image}
+            alt={product.name}
+            onError={(event) => {
+              event.currentTarget.onerror = null;
+              event.currentTarget.src = fallbackProductImage;
+            }}
+            className="aspect-square w-full object-cover"
+          />
         </div>
 
         <div>
           <p className="text-sm uppercase tracking-wide text-muted-foreground">{product.brand}</p>
           <h1 className="mt-1 font-display text-3xl font-bold sm:text-4xl">{product.name}</h1>
           <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
-            {product.shortSpecs.map((s: string) => <li key={s}>• {s}</li>)}
+            {product.shortSpecs.map((s: string) => (
+              <li key={s}>• {s}</li>
+            ))}
           </ul>
 
           <div className="mt-6 flex items-end gap-3">
-            <p className="font-display text-3xl font-bold text-primary">{formatPrice(product.price)}</p>
-            {product.oldPrice && <p className="text-lg text-muted-foreground line-through">{formatPrice(product.oldPrice)}</p>}
+            <p className="font-display text-3xl font-bold text-primary">
+              {formatPrice(product.price)}
+            </p>
+            {product.oldPrice && (
+              <p className="text-lg text-muted-foreground line-through">
+                {formatPrice(product.oldPrice)}
+              </p>
+            )}
           </div>
           {product.price === null && (
-            <p className="mt-1 text-sm text-muted-foreground">Tarif sur devis selon configuration et options.</p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Tarif sur devis selon configuration et options.
+            </p>
           )}
 
           <p className="mt-5 text-foreground/80">{product.description}</p>
@@ -91,8 +117,12 @@ function ProductPage() {
           </div>
 
           <div className="mt-6 flex flex-wrap gap-3">
-            <Button size="lg" onClick={() => setReserve(product)}>Réserver en magasin</Button>
-            <Button asChild size="lg" variant="outline"><Link to="/contact">Demander un devis</Link></Button>
+            <Button size="lg" onClick={() => setReserve(product)}>
+              Réserver en magasin
+            </Button>
+            <Button asChild size="lg" variant="outline">
+              <Link to="/contact">Demander un devis</Link>
+            </Button>
           </div>
 
           <div className="mt-6 grid grid-cols-3 gap-3 rounded-xl border bg-card p-4 text-xs">
@@ -102,8 +132,18 @@ function ProductPage() {
           </div>
 
           <div className="mt-4 flex flex-wrap gap-3 text-sm">
-            <a href="tel:0590326363" className="inline-flex items-center gap-1.5 text-primary hover:underline"><Phone className="h-4 w-4" /> 05 90 32 63 63</a>
-            <a href="mailto:contact@pcleader.fr" className="inline-flex items-center gap-1.5 text-primary hover:underline"><Mail className="h-4 w-4" /> contact@pcleader.fr</a>
+            <a
+              href="tel:0590326363"
+              className="inline-flex items-center gap-1.5 text-primary hover:underline"
+            >
+              <Phone className="h-4 w-4" /> 05 90 32 63 63
+            </a>
+            <a
+              href="mailto:contact@pcleader.fr"
+              className="inline-flex items-center gap-1.5 text-primary hover:underline"
+            >
+              <Mail className="h-4 w-4" /> contact@pcleader.fr
+            </a>
           </div>
         </div>
       </div>
@@ -130,12 +170,19 @@ function ProductPage() {
         <section className="mt-14">
           <h2 className="font-display text-2xl font-bold">Produits similaires</h2>
           <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-4">
-            {related.map((p) => <ProductCard key={p.id} product={p} onReserve={setReserve} />)}
+            {related.map((p) => (
+              <ProductCard key={p.id} product={p} onReserve={setReserve} />
+            ))}
           </div>
         </section>
       )}
 
-      <ReservationModal product={reserve} open={!!reserve} onOpenChange={(v) => !v && setReserve(null)} defaultStore={storeId} />
+      <ReservationModal
+        product={reserve}
+        open={!!reserve}
+        onOpenChange={(v) => !v && setReserve(null)}
+        defaultStore={storeId}
+      />
     </div>
   );
 }

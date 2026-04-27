@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { Menu, Search, Phone, MapPin, X, Wrench, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { categories } from "@/data/products";
@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils";
 
 const navLinks = [
   { to: "/catalogue", label: "Catalogue" },
-  { to: "/stock", label: "Stock par magasin" },
   { to: "/sav", label: "SAV" },
   { to: "/professionnels", label: "Pros" },
   { to: "/magasins", label: "Magasins" },
@@ -18,6 +17,13 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const [q, setQ] = useState("");
   const { location } = useRouterState();
+  const navigate = useNavigate();
+
+  const submitSearch = (event: React.FormEvent) => {
+    event.preventDefault();
+    navigate({ to: "/catalogue", search: { q: q.trim() } });
+    setOpen(false);
+  };
 
   return (
     <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur">
@@ -25,11 +31,16 @@ export function Header() {
       <div className="hidden border-b bg-secondary text-secondary-foreground md:block">
         <div className="container-wide flex h-9 items-center justify-between text-xs">
           <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1.5"><MapPin className="h-3.5 w-3.5" /> Jarry · Dothémare · Le Moule</span>
+            <span className="flex items-center gap-1.5">
+              <MapPin className="h-3.5 w-3.5" /> Jarry · Dothémare · Le Moule
+            </span>
             <span className="opacity-50">|</span>
-            <span>Le n°1 de l'informatique en Guadeloupe depuis 1998</span>
+            <span>Référence informatique en Guadeloupe depuis 1998</span>
           </div>
-          <a href="tel:0590326363" className="flex items-center gap-1.5 font-medium hover:text-primary">
+          <a
+            href="tel:0590326363"
+            className="flex items-center gap-1.5 font-medium hover:text-primary"
+          >
             <Phone className="h-3.5 w-3.5" /> 05 90 32 63 63
           </a>
         </div>
@@ -38,36 +49,40 @@ export function Header() {
       {/* Main bar */}
       <div className="container-wide flex h-16 items-center gap-4">
         <Link to="/" className="flex items-center gap-2 shrink-0">
-          <span className="grid h-9 w-9 place-items-center rounded-lg gradient-brand text-primary-foreground font-display font-bold">PC</span>
+          <span className="grid h-9 w-9 place-items-center rounded-lg gradient-brand text-primary-foreground font-display font-bold">
+            PC
+          </span>
           <span className="hidden font-display text-lg font-bold leading-tight sm:block">
-            PC Leader<span className="block text-[10px] font-medium uppercase tracking-widest text-muted-foreground">Caraïbes</span>
+            PC Leader
+            <span className="block text-[10px] font-medium uppercase tracking-widest text-muted-foreground">
+              Caraïbes
+            </span>
           </span>
         </Link>
 
         {/* Search */}
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            const url = `/catalogue?q=${encodeURIComponent(q)}`;
-            window.location.href = url;
-          }}
-          className="relative hidden flex-1 max-w-xl md:block"
-        >
+        <form onSubmit={submitSearch} className="relative hidden flex-1 max-w-xl md:block">
           <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <input
             value={q}
             onChange={(e) => setQ(e.target.value)}
-            placeholder="Rechercher : MacBook, iPhone, imprimante…"
+            placeholder="Rechercher : MacBook, iPhone, imprimante..."
             className="h-10 w-full rounded-lg border bg-surface pl-9 pr-3 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
           />
         </form>
 
         <div className="ml-auto hidden items-center gap-2 lg:flex">
           <Button asChild variant="ghost" size="sm">
-            <Link to="/sav"><Wrench className="h-4 w-4" />SAV</Link>
+            <Link to="/sav">
+              <Wrench className="h-4 w-4" />
+              SAV
+            </Link>
           </Button>
           <Button asChild variant="ghost" size="sm">
-            <Link to="/professionnels"><Briefcase className="h-4 w-4" />Devis pro</Link>
+            <Link to="/professionnels">
+              <Briefcase className="h-4 w-4" />
+              Devis pro
+            </Link>
           </Button>
         </div>
 
@@ -91,7 +106,7 @@ export function Header() {
                 to={l.to}
                 className={cn(
                   "rounded-md px-3 py-1.5 text-sm font-medium transition",
-                  active ? "bg-accent text-accent-foreground" : "text-foreground hover:bg-muted"
+                  active ? "bg-accent text-accent-foreground" : "text-foreground hover:bg-muted",
                 )}
               >
                 {l.label}
@@ -118,10 +133,7 @@ export function Header() {
       {open && (
         <div className="border-t lg:hidden">
           <div className="container-wide space-y-2 py-3">
-            <form
-              onSubmit={(e) => { e.preventDefault(); window.location.href = `/catalogue?q=${encodeURIComponent(q)}`; }}
-              className="relative"
-            >
+            <form onSubmit={submitSearch} className="relative">
               <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <input
                 value={q}

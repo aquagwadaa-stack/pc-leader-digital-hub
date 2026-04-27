@@ -1,25 +1,62 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Briefcase, CheckCircle2, Server, Printer, Network, Laptop, ShieldCheck, Users } from "lucide-react";
+import {
+  Briefcase,
+  CheckCircle2,
+  Server,
+  Printer,
+  Network,
+  Laptop,
+  ShieldCheck,
+  Users,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/professionnels")({
   head: () => ({
     meta: [
       { title: "Espace professionnels — PC Leader Caraïbes" },
-      { name: "description", content: "Solutions informatiques pour entreprises, écoles et administrations en Guadeloupe : devis matériel, maintenance, parc informatique, réseau." },
+      {
+        name: "description",
+        content:
+          "Solutions informatiques pour entreprises, écoles et administrations en Guadeloupe : devis matériel, maintenance, parc informatique, réseau.",
+      },
     ],
   }),
   component: ProsPage,
 });
 
 const services = [
-  { icon: Laptop, title: "Devis matériel", desc: "PC, Mac, écrans, périphériques. Tarifs négociés selon volume." },
-  { icon: Server, title: "Installation poste de travail", desc: "Configuration, déploiement, transfert des données." },
-  { icon: ShieldCheck, title: "Contrats de maintenance", desc: "Maintenance préventive et curative, infogérance légère." },
-  { icon: Users, title: "Renouvellement parc", desc: "Audit, plan de renouvellement, reprise de l'ancien parc." },
-  { icon: Printer, title: "Imprimantes & consommables", desc: "Multifonctions pro, contrats à la page, livraison de toners." },
-  { icon: Network, title: "Réseau & logiciels", desc: "Wi-Fi pro, pare-feu, Microsoft 365, sauvegardes." },
+  {
+    icon: Laptop,
+    title: "Devis matériel",
+    desc: "PC, Mac, écrans, périphériques. Offre adaptée selon besoin et volume.",
+  },
+  {
+    icon: Server,
+    title: "Installation poste de travail",
+    desc: "Configuration, déploiement, transfert des données.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Contrats de maintenance",
+    desc: "Maintenance préventive et curative, infogérance légère.",
+  },
+  {
+    icon: Users,
+    title: "Renouvellement parc",
+    desc: "Audit, plan de renouvellement, reprise de l'ancien parc.",
+  },
+  {
+    icon: Printer,
+    title: "Imprimantes & consommables",
+    desc: "Multifonctions pro, contrats à la page, livraison de toners.",
+  },
+  {
+    icon: Network,
+    title: "Réseau & logiciels",
+    desc: "Wi-Fi pro, pare-feu, Microsoft 365, sauvegardes.",
+  },
 ];
 
 function ProsPage() {
@@ -32,9 +69,12 @@ function ProsPage() {
           <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/15 px-3 py-1 text-xs font-semibold text-primary">
             <Briefcase className="h-3.5 w-3.5" /> Espace professionnels
           </span>
-          <h1 className="mt-3 font-display text-4xl font-bold sm:text-5xl">Votre partenaire informatique en Guadeloupe.</h1>
+          <h1 className="mt-3 font-display text-4xl font-bold sm:text-5xl">
+            Votre partenaire informatique en Guadeloupe.
+          </h1>
           <p className="mt-3 max-w-2xl text-secondary-foreground/70">
-            Entreprises, écoles, administrations : équipement, maintenance et conseil. Un interlocuteur dédié, des délais maîtrisés.
+            Entreprises, écoles, administrations : équipement, maintenance et conseil. Un
+            interlocuteur dédié, des délais maîtrisés.
           </p>
         </div>
       </section>
@@ -57,11 +97,19 @@ function ProsPage() {
           <div>
             <h2 className="font-display text-2xl font-bold">Demander un devis pro</h2>
             <p className="mt-2 text-muted-foreground">
-              Décrivez votre besoin, nous revenons vers vous sous 24-48h ouvrées avec une proposition adaptée.
+              Décrivez votre besoin, nous revenons vers vous sous 24-48h ouvrées avec une
+              proposition adaptée.
             </p>
             <ul className="mt-6 space-y-3 text-sm">
-              {["Tarifs négociés selon volume", "Livraison sur site en Guadeloupe", "Suivi par un interlocuteur dédié", "Compatible marchés publics"].map((t) => (
-                <li key={t} className="flex items-start gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-success" /> {t}</li>
+              {[
+                "Offres adaptées selon volume",
+                "Livraison ou retrait selon organisation",
+                "Suivi par un interlocuteur dédié",
+                "Dossiers pros et collectivités",
+              ].map((t) => (
+                <li key={t} className="flex items-start gap-2">
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-success" /> {t}
+                </li>
               ))}
             </ul>
           </div>
@@ -71,12 +119,19 @@ function ProsPage() {
               <div className="rounded-xl border border-success/40 bg-success/10 p-6">
                 <CheckCircle2 className="h-10 w-10 text-success" />
                 <h3 className="mt-3 font-display text-xl font-bold">Demande reçue</h3>
-                <p className="mt-2 text-sm">Un conseiller pro vous recontacte sous 24-48h ouvrées au numéro indiqué.</p>
-                <Button className="mt-4" variant="outline" onClick={() => setDone(false)}>Nouvelle demande</Button>
+                <p className="mt-2 text-sm">
+                  Un conseiller pro vous recontacte sous 24-48h ouvrées au numéro indiqué.
+                </p>
+                <Button className="mt-4" variant="outline" onClick={() => setDone(false)}>
+                  Nouvelle demande
+                </Button>
               </div>
             ) : (
               <form
-                onSubmit={(e) => { e.preventDefault(); setDone(true); }}
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  setDone(true);
+                }}
                 className="space-y-3"
               >
                 <div className="grid gap-3 sm:grid-cols-2">
@@ -89,7 +144,10 @@ function ProsPage() {
                 </div>
                 <div>
                   <label className="text-sm font-medium">Type de besoin</label>
-                  <select required className="mt-1 w-full rounded-md border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none">
+                  <select
+                    required
+                    className="mt-1 w-full rounded-md border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none"
+                  >
                     <option value="">Sélectionner…</option>
                     <option>Devis matériel</option>
                     <option>Installation poste de travail</option>
@@ -101,10 +159,19 @@ function ProsPage() {
                   </select>
                 </div>
                 <div>
-                  <label className="text-sm font-medium">Détails du besoin <span className="text-destructive">*</span></label>
-                  <textarea required rows={4} placeholder="Volumes, contexte, échéances…" className="mt-1 w-full rounded-md border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none" />
+                  <label className="text-sm font-medium">
+                    Détails du besoin <span className="text-destructive">*</span>
+                  </label>
+                  <textarea
+                    required
+                    rows={4}
+                    placeholder="Volumes, contexte, échéances…"
+                    className="mt-1 w-full rounded-md border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none"
+                  />
                 </div>
-                <Button type="submit" size="lg" className="w-full">Envoyer la demande</Button>
+                <Button type="submit" size="lg" className="w-full">
+                  Envoyer la demande
+                </Button>
               </form>
             )}
           </div>
@@ -114,10 +181,23 @@ function ProsPage() {
   );
 }
 
-function Field({ label, type = "text", placeholder, required }: { label: string; type?: string; placeholder?: string; required?: boolean }) {
+function Field({
+  label,
+  type = "text",
+  placeholder,
+  required,
+}: {
+  label: string;
+  type?: string;
+  placeholder?: string;
+  required?: boolean;
+}) {
   return (
     <div>
-      <label className="text-sm font-medium">{label}{required && <span className="text-destructive">*</span>}</label>
+      <label className="text-sm font-medium">
+        {label}
+        {required && <span className="text-destructive">*</span>}
+      </label>
       <input
         type={type}
         required={required}

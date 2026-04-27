@@ -11,7 +11,12 @@ interface Props {
 
 function statusOf(qty: number) {
   if (qty <= 0) return { label: "Rupture", icon: X, color: "text-destructive bg-destructive/10" };
-  if (qty <= 2) return { label: "Stock limité", icon: AlertCircle, color: "text-warning-foreground bg-warning/30" };
+  if (qty <= 2)
+    return {
+      label: "Stock limité",
+      icon: AlertCircle,
+      color: "text-warning-foreground bg-warning/30",
+    };
   return { label: "En stock", icon: Check, color: "text-success bg-success/10" };
 }
 
@@ -28,7 +33,7 @@ export function StockBadges({ stock, size = "sm", className }: Props) {
             className={cn(
               "inline-flex items-center gap-1 rounded-md font-medium",
               st.color,
-              size === "sm" ? "px-1.5 py-0.5 text-[11px]" : "px-2 py-1 text-xs"
+              size === "sm" ? "px-1.5 py-0.5 text-[11px]" : "px-2 py-1 text-xs",
             )}
             title={`${s.shortName}: ${qty > 0 ? qty + " en stock" : "rupture"}`}
           >

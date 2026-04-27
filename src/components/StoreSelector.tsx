@@ -18,7 +18,9 @@ export function StoreSelector({ value, onChange, includeAll = true }: Props) {
           key={o.id}
           onClick={() => onChange(o.id)}
           className={`rounded-md px-3 py-1.5 text-sm font-medium transition ${
-            value === o.id ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-muted"
+            value === o.id
+              ? "bg-primary text-primary-foreground"
+              : "text-muted-foreground hover:bg-muted"
           }`}
         >
           {o.label}

@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { stores, type StoreId } from "@/data/stores";
 import { formatPrice, type Product } from "@/data/products";
 import { CheckCircle2 } from "lucide-react";
+import fallbackProductImage from "@/assets/hero-store.jpg";
 
 interface Props {
   product: Product | null;
@@ -54,7 +55,9 @@ export function ReservationModal({ product, open, onOpenChange, defaultStore }: 
                 au magasin {stores.find((s) => s.id === storeId)?.shortName}.
               </DialogDescription>
             </DialogHeader>
-            <Button onClick={() => onOpenChange(false)} className="mt-2">Fermer</Button>
+            <Button onClick={() => onOpenChange(false)} className="mt-2">
+              Fermer
+            </Button>
           </div>
         ) : (
           <>
@@ -65,7 +68,15 @@ export function ReservationModal({ product, open, onOpenChange, defaultStore }: 
               </DialogDescription>
             </DialogHeader>
             <div className="flex gap-3 rounded-lg border bg-surface p-3">
-              <img src={product.image} alt="" className="h-16 w-16 rounded object-cover" />
+              <img
+                src={product.image}
+                alt={product.name}
+                onError={(event) => {
+                  event.currentTarget.onerror = null;
+                  event.currentTarget.src = fallbackProductImage;
+                }}
+                className="h-16 w-16 rounded object-cover"
+              />
               <div className="text-sm">
                 <p className="text-xs uppercase text-muted-foreground">{product.brand}</p>
                 <p className="font-medium">{product.name}</p>
@@ -111,7 +122,9 @@ export function ReservationModal({ product, open, onOpenChange, defaultStore }: 
                   className="mt-1 w-full rounded-md border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
                 />
               </div>
-              <Button type="submit" className="w-full" size="lg">Envoyer la réservation</Button>
+              <Button type="submit" className="w-full" size="lg">
+                Envoyer la réservation
+              </Button>
             </form>
           </>
         )}
@@ -121,11 +134,24 @@ export function ReservationModal({ product, open, onOpenChange, defaultStore }: 
 }
 
 function Input({
-  label, value, onChange, type = "text", required,
-}: { label: string; value: string; onChange: (v: string) => void; type?: string; required?: boolean }) {
+  label,
+  value,
+  onChange,
+  type = "text",
+  required,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  type?: string;
+  required?: boolean;
+}) {
   return (
     <div>
-      <label className="text-sm font-medium">{label}{required && <span className="text-destructive">*</span>}</label>
+      <label className="text-sm font-medium">
+        {label}
+        {required && <span className="text-destructive">*</span>}
+      </label>
       <input
         type={type}
         required={required}

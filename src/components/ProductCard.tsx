@@ -3,6 +3,7 @@ import type { Product } from "@/data/products";
 import { formatPrice } from "@/data/products";
 import { StockBadges } from "./StockBadges";
 import { Button } from "@/components/ui/button";
+import fallbackProductImage from "@/assets/hero-store.jpg";
 
 interface Props {
   product: Product;
@@ -21,6 +22,10 @@ export function ProductCard({ product, onReserve }: Props) {
           src={product.image}
           alt={product.name}
           loading="lazy"
+          onError={(event) => {
+            event.currentTarget.onerror = null;
+            event.currentTarget.src = fallbackProductImage;
+          }}
           className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
         />
         {product.isNew && (
@@ -53,9 +58,13 @@ export function ProductCard({ product, onReserve }: Props) {
         <StockBadges stock={product.stock} />
         <div className="mt-auto flex items-end justify-between gap-2 pt-2">
           <div>
-            <p className="text-lg font-bold leading-none text-foreground">{formatPrice(product.price)}</p>
+            <p className="text-lg font-bold leading-none text-foreground">
+              {formatPrice(product.price)}
+            </p>
             {product.oldPrice && (
-              <p className="text-xs text-muted-foreground line-through">{formatPrice(product.oldPrice)}</p>
+              <p className="text-xs text-muted-foreground line-through">
+                {formatPrice(product.oldPrice)}
+              </p>
             )}
           </div>
           <Button size="sm" onClick={() => onReserve?.(product)} className="shrink-0">

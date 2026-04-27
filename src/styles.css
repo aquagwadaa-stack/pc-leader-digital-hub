@@ -135,7 +135,10 @@
     font-feature-settings: "cv11", "ss01";
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
   }
@@ -149,7 +152,9 @@
     padding-inline: 1rem;
   }
   @media (min-width: 768px) {
-    .container-wide { padding-inline: 2rem; }
+    .container-wide {
+      padding-inline: 2rem;
+    }
   }
   .gradient-brand {
     background-image: linear-gradient(135deg, oklch(0.55 0.23 255) 0%, oklch(0.45 0.2 270) 100%);
@@ -157,13 +162,17 @@
   .gradient-hero {
     background-image:
       radial-gradient(ellipse 80% 60% at 80% 0%, oklch(0.55 0.23 255 / 0.15), transparent),
-      radial-gradient(ellipse 60% 50% at 0% 100%, oklch(0.62 0.16 155 / 0.10), transparent),
+      radial-gradient(ellipse 60% 50% at 0% 100%, oklch(0.62 0.16 155 / 0.1), transparent),
       linear-gradient(180deg, oklch(0.99 0.002 250), oklch(0.97 0.005 250));
   }
   .shadow-card {
-    box-shadow: 0 1px 2px 0 oklch(0.18 0.02 260 / 0.04), 0 4px 16px -4px oklch(0.18 0.02 260 / 0.08);
+    box-shadow:
+      0 1px 2px 0 oklch(0.18 0.02 260 / 0.04),
+      0 4px 16px -4px oklch(0.18 0.02 260 / 0.08);
   }
   .shadow-card-hover {
-    box-shadow: 0 4px 8px 0 oklch(0.18 0.02 260 / 0.06), 0 12px 32px -8px oklch(0.55 0.23 255 / 0.18);
+    box-shadow:
+      0 4px 8px 0 oklch(0.18 0.02 260 / 0.06),
+      0 12px 32px -8px oklch(0.55 0.23 255 / 0.18);
   }
 }

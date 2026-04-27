@@ -30,18 +30,25 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "PC Leader Caraïbes — Le n°1 de l'informatique en Guadeloupe" },
-      { name: "description", content: "Vente, conseil et SAV informatique en Guadeloupe. Ordinateurs, Apple, smartphones, imprimantes. 3 magasins : Jarry, Dothémare, Le Moule." },
+      { title: "PC Leader Caraïbes — Informatique et SAV en Guadeloupe" },
+      {
+        name: "description",
+        content:
+          "Vente, conseil et SAV informatique en Guadeloupe. Ordinateurs, Apple, smartphones, imprimantes. 3 magasins : Jarry, Dothémare, Le Moule.",
+      },
       { name: "author", content: "PC Leader Caraïbes" },
       { property: "og:title", content: "PC Leader Caraïbes" },
-      { property: "og:description", content: "Le n°1 de l'informatique en Guadeloupe depuis 1998." },
+      { property: "og:description", content: "Référence informatique en Guadeloupe depuis 1998." },
       { property: "og:type", content: "website" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap",
+      },
     ],
   }),
   shellComponent: RootShell,

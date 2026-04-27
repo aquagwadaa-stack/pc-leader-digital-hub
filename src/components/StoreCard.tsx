@@ -24,11 +24,17 @@ export function StoreCard({ store }: { store: Store }) {
           <h3 className="font-display text-lg font-bold">{store.name}</h3>
           <p className="mt-1 flex items-start gap-1.5 text-sm text-muted-foreground">
             <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
-            <span>{store.address}<br />{store.postalCode} {store.city}</span>
+            <span>
+              {store.address}
+              <br />
+              {store.postalCode} {store.city}
+            </span>
           </p>
         </div>
         <div>
-          <p className="flex items-center gap-1.5 text-sm font-semibold"><Clock className="h-4 w-4" /> Horaires</p>
+          <p className="flex items-center gap-1.5 text-sm font-semibold">
+            <Clock className="h-4 w-4" /> Horaires
+          </p>
           <ul className="mt-1.5 space-y-0.5 text-sm">
             {store.hours.map((h) => (
               <li key={h.label} className="flex justify-between gap-3">
@@ -40,10 +46,16 @@ export function StoreCard({ store }: { store: Store }) {
         </div>
         <div className="mt-auto flex flex-wrap gap-2 pt-2">
           <Button asChild size="sm" variant="default">
-            <a href={`tel:${store.phone.replace(/\s/g, "")}`}><Phone className="h-4 w-4" /> Appeler</a>
+            <a href={`tel:${store.phone.replace(/\s/g, "")}`}>
+              <Phone className="h-4 w-4" /> Appeler
+            </a>
           </Button>
           <Button asChild size="sm" variant="outline">
-            <a href={`https://www.google.com/maps/search/?api=1&query=${mapsQuery}`} target="_blank" rel="noreferrer">
+            <a
+              href={`https://www.google.com/maps/search/?api=1&query=${mapsQuery}`}
+              target="_blank"
+              rel="noreferrer"
+            >
               <ExternalLink className="h-4 w-4" /> Itinéraire
             </a>
           </Button>

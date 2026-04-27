@@ -55,13 +55,12 @@ export interface Product {
   isNew?: boolean;
 }
 
-const img = (q: string) =>
-  `https://images.unsplash.com/${q}?auto=format&fit=crop&w=800&q=80`;
+const img = (q: string) => `https://images.unsplash.com/${q}?auto=format&fit=crop&w=800&q=80`;
 
 export const products: Product[] = [
   {
     id: "macbook-air-m3",
-    name: "MacBook Air 13\" M3",
+    name: 'MacBook Air 13" M3',
     brand: "Apple",
     category: "apple",
     price: 1399,
@@ -73,7 +72,7 @@ export const products: Product[] = [
       { label: "Processeur", value: "Apple M3 8 cœurs" },
       { label: "Mémoire", value: "16 Go unifiée" },
       { label: "Stockage", value: "512 Go SSD" },
-      { label: "Écran", value: "13,6\" Liquid Retina" },
+      { label: "Écran", value: '13,6" Liquid Retina' },
       { label: "Autonomie", value: "Jusqu'à 18h" },
       { label: "Garantie", value: "2 ans constructeur" },
     ],
@@ -87,11 +86,11 @@ export const products: Product[] = [
     category: "smartphones",
     price: 869,
     image: img("photo-1592286927505-1def25115558"),
-    shortSpecs: ["Écran 6,1\"", "Dynamic Island", "USB-C"],
+    shortSpecs: ['Écran 6,1"', "Dynamic Island", "USB-C"],
     description:
       "iPhone 15 avec puce A16 Bionic, double appareil photo 48 Mpx et port USB-C. Disponible coloris noir, bleu, rose, jaune.",
     specs: [
-      { label: "Écran", value: "6,1\" Super Retina XDR" },
+      { label: "Écran", value: '6,1" Super Retina XDR' },
       { label: "Puce", value: "A16 Bionic" },
       { label: "Stockage", value: "128 Go" },
       { label: "Photo", value: "48 Mpx + 12 Mpx" },
@@ -102,15 +101,16 @@ export const products: Product[] = [
   },
   {
     id: "ipad-air-11",
-    name: "iPad Air 11\" M2",
+    name: 'iPad Air 11" M2',
     brand: "Apple",
     category: "tablettes",
     price: 799,
     image: img("photo-1561154464-82e9adf32764"),
     shortSpecs: ["Puce M2", "128 Go", "Wi-Fi"],
-    description: "Tablette polyvalente pour le travail, l'école et la création. Compatible Apple Pencil Pro.",
+    description:
+      "Tablette polyvalente pour le travail, l'école et la création. Compatible Apple Pencil Pro.",
     specs: [
-      { label: "Écran", value: "11\" Liquid Retina" },
+      { label: "Écran", value: '11" Liquid Retina' },
       { label: "Puce", value: "Apple M2" },
       { label: "Stockage", value: "128 Go" },
       { label: "Connectivité", value: "Wi-Fi 6E" },
@@ -131,7 +131,7 @@ export const products: Product[] = [
       { label: "Processeur", value: "Intel Core i7-1355U" },
       { label: "Mémoire", value: "16 Go DDR4" },
       { label: "Stockage", value: "512 Go SSD NVMe" },
-      { label: "Écran", value: "14\" Full HD IPS" },
+      { label: "Écran", value: '14" Full HD IPS' },
       { label: "OS", value: "Windows 11 Pro" },
     ],
     stock: { jarry: 6, dothemare: 2, lemoule: 0 },
@@ -145,12 +145,13 @@ export const products: Product[] = [
     price: 1249,
     image: img("photo-1525547719571-a2d4ac8945e2"),
     shortSpecs: ["Core Ultra 7", "OLED 2.8K", "1 To"],
-    description: "Ultraportable premium avec écran OLED 2.8K, châssis aluminium et autonomie longue durée.",
+    description:
+      "Ultraportable premium avec écran OLED 2.8K, châssis aluminium et autonomie longue durée.",
     specs: [
       { label: "Processeur", value: "Intel Core Ultra 7" },
       { label: "Mémoire", value: "16 Go LPDDR5" },
       { label: "Stockage", value: "1 To SSD" },
-      { label: "Écran", value: "14\" OLED 2.8K 120 Hz" },
+      { label: "Écran", value: '14" OLED 2.8K 120 Hz' },
     ],
     stock: { jarry: 2, dothemare: 1, lemoule: 0 },
     isNew: true,
@@ -162,13 +163,14 @@ export const products: Product[] = [
     category: "bureau",
     price: 849,
     image: img("photo-1547082299-de196ea013d6"),
-    shortSpecs: ["Tout-en-un 23,8\"", "Ryzen 5", "16 Go"],
-    description: "PC tout-en-un compact pour la maison ou le bureau. Webcam HD intégrée, design propre sans tour.",
+    shortSpecs: ['Tout-en-un 23,8"', "Ryzen 5", "16 Go"],
+    description:
+      "PC tout-en-un compact pour la maison ou le bureau. Webcam HD intégrée, design propre sans tour.",
     specs: [
       { label: "Processeur", value: "AMD Ryzen 5 7520U" },
       { label: "Mémoire", value: "16 Go DDR5" },
       { label: "Stockage", value: "512 Go SSD" },
-      { label: "Écran", value: "23,8\" Full HD" },
+      { label: "Écran", value: '23,8" Full HD' },
     ],
     stock: { jarry: 3, dothemare: 0, lemoule: 2 },
   },
@@ -179,10 +181,11 @@ export const products: Product[] = [
     category: "smartphones",
     price: 899,
     image: img("photo-1511707171634-5f897ff02aa9"),
-    shortSpecs: ["6,2\" AMOLED", "Galaxy AI", "256 Go"],
-    description: "Smartphone Galaxy AI avec triple appareil photo et écran Dynamic AMOLED 2X 120 Hz.",
+    shortSpecs: ['6,2" AMOLED', "Galaxy AI", "256 Go"],
+    description:
+      "Smartphone Galaxy AI avec triple appareil photo et écran Dynamic AMOLED 2X 120 Hz.",
     specs: [
-      { label: "Écran", value: "6,2\" Dynamic AMOLED 120 Hz" },
+      { label: "Écran", value: '6,2" Dynamic AMOLED 120 Hz' },
       { label: "Stockage", value: "256 Go" },
       { label: "Photo", value: "50 + 10 + 12 Mpx" },
       { label: "Batterie", value: "4000 mAh" },
@@ -198,7 +201,8 @@ export const products: Product[] = [
     price: 299,
     image: img("photo-1612815154858-60aa4c59eaa6"),
     shortSpecs: ["3-en-1", "Réservoirs", "Wi-Fi"],
-    description: "Multifonction avec réservoirs rechargeables. Jusqu'à 3 ans d'encre fournis. Idéale famille et TPE.",
+    description:
+      "Multifonction avec réservoirs rechargeables. Jusqu'à 3 ans d'encre fournis. Idéale famille et TPE.",
     specs: [
       { label: "Fonctions", value: "Imprimer, copier, scanner" },
       { label: "Connectivité", value: "Wi-Fi, USB" },
@@ -208,15 +212,16 @@ export const products: Product[] = [
   },
   {
     id: "samsung-monitor-27",
-    name: "Écran Samsung ViewFinity 27\"",
+    name: 'Écran Samsung ViewFinity 27"',
     brand: "Samsung",
     category: "ecrans",
     price: 329,
     image: img("photo-1527443224154-c4a3942d3acf"),
-    shortSpecs: ["27\" QHD", "IPS", "75 Hz"],
-    description: "Écran QHD 2560x1440 pour le travail et le multimédia. Mode Eye Saver, sortie HDMI/DisplayPort.",
+    shortSpecs: ['27" QHD', "IPS", "75 Hz"],
+    description:
+      "Écran QHD 2560x1440 pour le travail et le multimédia. Mode Eye Saver, sortie HDMI/DisplayPort.",
     specs: [
-      { label: "Taille", value: "27\"" },
+      { label: "Taille", value: '27"' },
       { label: "Résolution", value: "2560 x 1440 QHD" },
       { label: "Dalle", value: "IPS" },
       { label: "Fréquence", value: "75 Hz" },
@@ -230,10 +235,11 @@ export const products: Product[] = [
     category: "ecrans",
     price: 449,
     image: img("photo-1616763355548-1b606f439f86"),
-    shortSpecs: ["27\" QHD", "180 Hz", "1 ms"],
-    description: "Écran gaming Nano IPS 180 Hz avec G-Sync compatible. Couleurs précises pour le jeu et la création.",
+    shortSpecs: ['27" QHD', "180 Hz", "1 ms"],
+    description:
+      "Écran gaming Nano IPS 180 Hz avec G-Sync compatible. Couleurs précises pour le jeu et la création.",
     specs: [
-      { label: "Taille", value: "27\"" },
+      { label: "Taille", value: '27"' },
       { label: "Résolution", value: "QHD 1440p" },
       { label: "Fréquence", value: "180 Hz" },
       { label: "Temps de réponse", value: "1 ms GtG" },
@@ -248,7 +254,8 @@ export const products: Product[] = [
     price: 279,
     image: img("photo-1606220588913-b3aacb4d2f46"),
     shortSpecs: ["Réduction bruit", "USB-C", "Audio spatial"],
-    description: "Réduction active du bruit améliorée, mode Transparence adaptatif et boîtier USB-C.",
+    description:
+      "Réduction active du bruit améliorée, mode Transparence adaptatif et boîtier USB-C.",
     specs: [
       { label: "Connectique", value: "USB-C / Lightning" },
       { label: "Autonomie", value: "Jusqu'à 30h avec boîtier" },
@@ -295,7 +302,8 @@ export const products: Product[] = [
     price: 549,
     image: img("photo-1606144042614-b2417e99c4e3"),
     shortSpecs: ["Lecteur disque", "1 To SSD", "4K"],
-    description: "Console PS5 Slim version disque. Manette DualSense incluse. Réservation possible en magasin.",
+    description:
+      "Console PS5 Slim version disque. Manette DualSense incluse. Réservation possible en magasin.",
     specs: [
       { label: "Stockage", value: "1 To SSD" },
       { label: "4K", value: "Jusqu'à 120 fps" },
@@ -311,7 +319,8 @@ export const products: Product[] = [
     price: 32,
     image: img("photo-1612815154858-60aa4c59eaa6"),
     shortSpecs: ["Origine HP", "Haute capacité"],
-    description: "Cartouche d'encre couleur d'origine HP, haute capacité pour imprimantes DeskJet/Envy compatibles.",
+    description:
+      "Cartouche d'encre couleur d'origine HP, haute capacité pour imprimantes DeskJet/Envy compatibles.",
     specs: [{ label: "Type", value: "Origine HP, XL" }],
     stock: { jarry: 25, dothemare: 18, lemoule: 12 },
   },
@@ -323,7 +332,8 @@ export const products: Product[] = [
     price: 99,
     image: img("photo-1633419461186-7d40a38105ec"),
     shortSpecs: ["6 personnes", "1 To OneDrive", "1 an"],
-    description: "Word, Excel, PowerPoint, Outlook + 1 To OneDrive par personne. Activation immédiate en magasin.",
+    description:
+      "Word, Excel, PowerPoint, Outlook + 1 To OneDrive par personne. Activation immédiate en magasin.",
     specs: [{ label: "Licence", value: "6 utilisateurs / 1 an" }],
     stock: { jarry: 15, dothemare: 10, lemoule: 8 },
   },
@@ -350,7 +360,8 @@ export const products: Product[] = [
     price: null,
     image: img("photo-1518770660439-4636190af475"),
     shortSpecs: ["AM5", "DDR5", "PCIe 5.0"],
-    description: "Carte mère AM5 pour processeurs AMD Ryzen 7000. Disponible sur commande, conseil en magasin.",
+    description:
+      "Carte mère AM5 pour processeurs AMD Ryzen 7000. Disponible sur commande, conseil en magasin.",
     specs: [
       { label: "Socket", value: "AMD AM5" },
       { label: "Mémoire", value: "DDR5" },
@@ -359,15 +370,16 @@ export const products: Product[] = [
   },
   {
     id: "tablette-samsung-a9",
-    name: "Galaxy Tab A9+ 11\"",
+    name: 'Galaxy Tab A9+ 11"',
     brand: "Samsung",
     category: "tablettes",
     price: 269,
     image: img("photo-1544244015-0df4b3ffc6b0"),
-    shortSpecs: ["11\" 90 Hz", "64 Go", "Wi-Fi"],
-    description: "Tablette familiale 11\" avec écran 90 Hz et son surround. Idéale pour les enfants et l'école.",
+    shortSpecs: ['11" 90 Hz', "64 Go", "Wi-Fi"],
+    description:
+      "Tablette familiale 11\" avec écran 90 Hz et son surround. Idéale pour les enfants et l'école.",
     specs: [
-      { label: "Écran", value: "11\" 90 Hz" },
+      { label: "Écran", value: '11" 90 Hz' },
       { label: "Stockage", value: "64 Go extensible" },
     ],
     stock: { jarry: 5, dothemare: 3, lemoule: 4 },
@@ -379,4 +391,10 @@ export const getRelated = (p: Product, n = 4) =>
   products.filter((x) => x.category === p.category && x.id !== p.id).slice(0, n);
 
 export const formatPrice = (price: number | null) =>
-  price === null ? "Nous consulter" : new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(price);
+  price === null
+    ? "Nous consulter"
+    : new Intl.NumberFormat("fr-FR", {
+        style: "currency",
+        currency: "EUR",
+        maximumFractionDigits: 0,
+      }).format(price);
