@@ -84,7 +84,7 @@ export function Header() {
       <nav className="hidden border-t bg-background lg:block">
         <div className="container-wide flex h-11 items-center gap-1 overflow-x-auto">
           {navLinks.map((l) => {
-            const active = location.pathname === l.to || (l.to !== "/" && location.pathname.startsWith(l.to));
+            const active = location.pathname === l.to || location.pathname.startsWith(l.to + "/");
             return (
               <Link
                 key={l.to}
