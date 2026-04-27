@@ -56,7 +56,7 @@ function CataloguePage() {
   }, [search]);
 
   const update = (patch: Partial<typeof search>) =>
-    navigate({ search: (prev) => ({ ...prev, ...patch }) });
+    navigate({ search: (prev: typeof search) => ({ ...prev, ...patch }) });
 
   const reset = () => navigate({ search: { q: "", category: "", brand: "", store: "", available: false, max: 0 } });
 
