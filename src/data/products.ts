@@ -1,9 +1,9 @@
 import type { StoreId } from "./stores";
 
 export type CategoryId =
+  | "apple"
   | "portables"
   | "bureau"
-  | "apple"
   | "smartphones"
   | "tablettes"
   | "ecrans"
@@ -14,7 +14,8 @@ export type CategoryId =
   | "reseau"
   | "logiciels"
   | "encres"
-  | "pieces";
+  | "pieces"
+  | "videoprojecteurs";
 
 export interface Category {
   id: CategoryId;
@@ -23,20 +24,21 @@ export interface Category {
 }
 
 export const categories: Category[] = [
-  { id: "portables", name: "Ordinateurs portables", icon: "Laptop" },
-  { id: "bureau", name: "PC de bureau", icon: "Monitor" },
-  { id: "apple", name: "Apple / Mac", icon: "Apple" },
-  { id: "smartphones", name: "Smartphones", icon: "Smartphone" },
-  { id: "tablettes", name: "Tablettes", icon: "Tablet" },
-  { id: "ecrans", name: "Écrans", icon: "MonitorSmartphone" },
+  { id: "apple", name: "Produits Apple", icon: "Apple" },
+  { id: "portables", name: "Portables PC", icon: "Laptop" },
+  { id: "bureau", name: "Ordinateurs PC", icon: "Monitor" },
+  { id: "smartphones", name: "Téléphones", icon: "Smartphone" },
+  { id: "tablettes", name: "Tablettes PC", icon: "Tablet" },
+  { id: "ecrans", name: "Ecrans", icon: "MonitorSmartphone" },
   { id: "imprimantes", name: "Imprimantes", icon: "Printer" },
   { id: "consoles", name: "Consoles & Jeux", icon: "Gamepad2" },
-  { id: "accessoires", name: "Accessoires", icon: "Mouse" },
-  { id: "stockage", name: "Stockage", icon: "HardDrive" },
+  { id: "accessoires", name: "Accessoires - Housses", icon: "Mouse" },
+  { id: "stockage", name: "Stockage externe", icon: "HardDrive" },
   { id: "reseau", name: "Réseau", icon: "Wifi" },
   { id: "logiciels", name: "Logiciels", icon: "AppWindow" },
   { id: "encres", name: "Encres & Toners", icon: "Droplet" },
   { id: "pieces", name: "Pièces détachées", icon: "Cpu" },
+  { id: "videoprojecteurs", name: "Vidéoprojecteurs", icon: "Projector" },
 ];
 
 export interface Product {
@@ -78,6 +80,7 @@ export const products: Product[] = [
     ],
     stock: { jarry: 4, dothemare: 2, lemoule: 0 },
     popular: true,
+    isNew: true,
   },
   {
     id: "iphone-15",
@@ -85,6 +88,7 @@ export const products: Product[] = [
     brand: "Apple",
     category: "smartphones",
     price: 869,
+    oldPrice: 929,
     image: img("photo-1592286927505-1def25115558"),
     shortSpecs: ['Écran 6,1"', "Dynamic Island", "USB-C"],
     description:
@@ -116,6 +120,7 @@ export const products: Product[] = [
       { label: "Connectivité", value: "Wi-Fi 6E" },
     ],
     stock: { jarry: 3, dothemare: 4, lemoule: 1 },
+    isNew: true,
   },
   {
     id: "thinkpad-e14",
@@ -192,6 +197,7 @@ export const products: Product[] = [
     ],
     stock: { jarry: 5, dothemare: 4, lemoule: 2 },
     popular: true,
+    isNew: true,
   },
   {
     id: "epson-ecotank",
@@ -199,6 +205,7 @@ export const products: Product[] = [
     brand: "Epson",
     category: "imprimantes",
     price: 299,
+    oldPrice: 349,
     image: img("photo-1612815154858-60aa4c59eaa6"),
     shortSpecs: ["3-en-1", "Réservoirs", "Wi-Fi"],
     description:
@@ -216,6 +223,7 @@ export const products: Product[] = [
     brand: "Samsung",
     category: "ecrans",
     price: 329,
+    oldPrice: 379,
     image: img("photo-1527443224154-c4a3942d3acf"),
     shortSpecs: ['27" QHD', "IPS", "75 Hz"],
     description:
@@ -252,6 +260,7 @@ export const products: Product[] = [
     brand: "Apple",
     category: "accessoires",
     price: 279,
+    oldPrice: 299,
     image: img("photo-1606220588913-b3aacb4d2f46"),
     shortSpecs: ["Réduction bruit", "USB-C", "Audio spatial"],
     description:
@@ -300,6 +309,7 @@ export const products: Product[] = [
     brand: "Sony",
     category: "consoles",
     price: 549,
+    oldPrice: 599,
     image: img("photo-1606144042614-b2417e99c4e3"),
     shortSpecs: ["Lecteur disque", "1 To SSD", "4K"],
     description:
@@ -365,6 +375,23 @@ export const products: Product[] = [
     specs: [
       { label: "Socket", value: "AMD AM5" },
       { label: "Mémoire", value: "DDR5" },
+    ],
+    stock: { jarry: 1, dothemare: 0, lemoule: 0 },
+  },
+  {
+    id: "epson-eb-fh52",
+    name: "Vidéoprojecteur Epson EB-FH52",
+    brand: "Epson",
+    category: "videoprojecteurs",
+    price: 799,
+    image: img("photo-1565814329452-e1efa11c5b89"),
+    shortSpecs: ["Full HD", "4000 lumens", "Wi-Fi"],
+    description:
+      "Vidéoprojecteur Full HD lumineux pour salle de réunion, classe ou home cinéma. Disponible sur commande et conseil en magasin.",
+    specs: [
+      { label: "Résolution", value: "Full HD 1080p" },
+      { label: "Luminosité", value: "4000 lumens" },
+      { label: "Connectivité", value: "HDMI, USB, Wi-Fi" },
     ],
     stock: { jarry: 1, dothemare: 0, lemoule: 0 },
   },

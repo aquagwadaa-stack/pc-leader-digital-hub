@@ -5,13 +5,12 @@ import {
   Apple,
   ArrowRight,
   Award,
-  Briefcase,
+  BadgeCheck,
   Clock,
   Cpu,
   Droplet,
   Gamepad2,
   HardDrive,
-  Headphones,
   Laptop,
   MapPin,
   Monitor,
@@ -19,11 +18,14 @@ import {
   Phone,
   Plug,
   Printer,
+  Projector,
   Search,
   ShieldCheck,
   ShoppingBag,
   Smartphone,
+  Sparkles,
   Tablet,
+  Tags,
   Wifi,
   Wrench,
 } from "lucide-react";
@@ -49,16 +51,17 @@ const categoryIconMap: Record<string, React.ElementType> = {
   logiciels: AppWindow,
   encres: Droplet,
   pieces: Cpu,
+  videoprojecteurs: Projector,
 };
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "PC Leader Caraïbes — Informatique, Apple, SAV en Guadeloupe" },
+      { title: "PC Leader Caraïbes — Revendeur Apple agréé et informatique en Guadeloupe" },
       {
         name: "description",
         content:
-          "Trouvez votre matériel informatique en Guadeloupe : MacBook, iPhone, PC portables, imprimantes, consoles. Stock réel par magasin, SAV, conseil pro.",
+          "PC Leader Caraïbes : revendeur agréé Apple, informatique, téléphonie, multimédia, pièces détachées, consommables et SAV en Guadeloupe.",
       },
     ],
   }),
@@ -69,7 +72,7 @@ function HomePage() {
   const [search, setSearch] = useState("");
   const [reserveProduct, setReserveProduct] = useState<Product | null>(null);
   const navigate = useNavigate({ from: "/" });
-  const popular = products.filter((p) => p.popular).slice(0, 8);
+  const featured = products.filter((p) => p.isNew || p.oldPrice || p.popular).slice(0, 8);
 
   return (
     <>
@@ -78,17 +81,18 @@ function HomePage() {
         <div className="container-wide grid gap-10 py-12 md:py-20 lg:grid-cols-2 lg:items-center">
           <div className="min-w-0">
             <span className="inline-flex items-center gap-2 rounded-full border bg-card px-3 py-1 text-xs font-medium">
-              <ShieldCheck className="h-3.5 w-3.5 text-primary" />
-              Référence informatique en Guadeloupe depuis 1998
+              <BadgeCheck className="h-3.5 w-3.5 text-primary" />
+              Revendeur agréé Apple · Informatique en Guadeloupe depuis 1998
             </span>
             <h1 className="mt-4 font-display text-3xl font-bold leading-[1.1] sm:text-5xl lg:text-6xl">
-              Trouvez votre matériel,
+              Le magasin high-tech local,
               <br />
-              <span className="text-primary">en stock près de chez vous.</span>
+              <span className="text-primary">enfin représenté correctement.</span>
             </h1>
             <p className="mt-4 max-w-xl text-base text-muted-foreground sm:text-lg">
-              Apple, PC portables, imprimantes, smartphones, accessoires. Réservation en magasin,
-              SAV expert, devis pour les pros.
+              Apple, PC portables, téléphones, imprimantes, consoles, pièces détachées et
+              consommables. Une vitrine claire avec nouveautés, promotions, stock par magasin et
+              SAV.
             </p>
 
             <form
@@ -111,10 +115,20 @@ function HomePage() {
             </form>
 
             <div className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-4">
-              <QuickAction to="/catalogue" icon={ShoppingBag} label="Catalogue" />
+              <QuickAction
+                to="/catalogue"
+                search={{ category: "apple" }}
+                icon={Apple}
+                label="Apple agréé"
+              />
+              <QuickAction
+                to="/catalogue"
+                search={{ newOnly: true }}
+                icon={Sparkles}
+                label="Nouveautés"
+              />
+              <QuickAction to="/catalogue" search={{ promo: true }} icon={Tags} label="Promos" />
               <QuickAction to="/sav" icon={Wrench} label="SAV" />
-              <QuickAction to="/professionnels" icon={Briefcase} label="Devis pro" />
-              <QuickAction to="/magasins" icon={MapPin} label="Magasins" />
             </div>
           </div>
 
@@ -134,7 +148,7 @@ function HomePage() {
                   <ShieldCheck className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold">Atelier SAV à Jarry</p>
+                  <p className="text-sm font-semibold">SAV Jarry & Dothémare</p>
                   <p className="text-xs text-muted-foreground">Diagnostic après dépôt</p>
                 </div>
               </div>
@@ -146,10 +160,38 @@ function HomePage() {
       {/* TRUST BAND */}
       <section className="border-y bg-card">
         <div className="container-wide grid gap-6 py-6 sm:grid-cols-2 lg:grid-cols-4">
-          <Trust icon={Award} title="Depuis 1998" desc="Expertise locale en Guadeloupe" />
+          <Trust
+            icon={Award}
+            title="Depuis 1998"
+            desc="Enseigne informatique installée localement"
+          />
+          <Trust icon={Apple} title="Apple agréé" desc="Mac, iPhone, iPad, Watch et AirPods" />
           <Trust icon={MapPin} title="3 magasins" desc="Jarry, Dothémare, Le Moule" />
-          <Trust icon={Wrench} title="SAV intégré" desc="Réparation toutes marques" />
-          <Trust icon={Headphones} title="Conseil local" desc="Une équipe qui répond vraiment" />
+          <Trust icon={Wrench} title="SAV & réparations" desc="Dépôt possible en magasin" />
+        </div>
+      </section>
+
+      {/* APPLE */}
+      <section className="border-b bg-secondary text-secondary-foreground">
+        <div className="container-wide grid gap-6 py-10 md:grid-cols-[1fr,auto] md:items-center">
+          <div>
+            <span className="inline-flex items-center gap-2 rounded-full bg-primary/15 px-3 py-1 text-xs font-semibold text-primary">
+              <Apple className="h-3.5 w-3.5" />
+              Produits Apple · Revendeur agréé
+            </span>
+            <h2 className="mt-3 font-display text-2xl font-bold sm:text-3xl">
+              Une entrée Apple assumée, comme sur le site officiel actuel.
+            </h2>
+            <p className="mt-2 max-w-2xl text-secondary-foreground/70">
+              Mac, MacBook, iPad, iPhone, Watch et AirPods sont regroupés dans un univers clair,
+              avec les disponibilités par magasin et une demande de réservation.
+            </p>
+          </div>
+          <Button asChild size="lg">
+            <Link to="/catalogue" search={{ category: "apple" }}>
+              Voir l'univers Apple <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Button>
         </div>
       </section>
 
@@ -166,8 +208,8 @@ function HomePage() {
             </Link>
           </Button>
         </div>
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7">
-          {categories.slice(0, 14).map((c) => (
+        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-8">
+          {categories.map((c) => (
             <Link
               key={c.id}
               to="/catalogue"
@@ -186,21 +228,23 @@ function HomePage() {
         </div>
       </section>
 
-      {/* PRODUITS POPULAIRES */}
+      {/* NOUVEAUTÉS & PROMOS */}
       <section className="container-wide pb-16">
         <div className="flex items-end justify-between gap-4">
           <div>
-            <h2 className="font-display text-3xl font-bold">Produits populaires</h2>
+            <h2 className="font-display text-3xl font-bold">Nouveautés & promotions</h2>
             <p className="mt-1 text-muted-foreground">
-              Les références les plus demandées en Guadeloupe.
+              Deux entrées déjà présentes dans l'univers PC Leader, mais plus lisibles.
             </p>
           </div>
           <Button asChild variant="outline">
-            <Link to="/catalogue">Voir le catalogue</Link>
+            <Link to="/catalogue" search={{ newOnly: true }}>
+              Voir les nouveautés
+            </Link>
           </Button>
         </div>
         <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-          {popular.map((p) => (
+          {featured.map((p) => (
             <ProductCard key={p.id} product={p} onReserve={setReserveProduct} />
           ))}
         </div>
@@ -278,26 +322,26 @@ function HomePage() {
         </div>
       </section>
 
-      {/* PRO BANNER */}
+      {/* CONTACT BANNER */}
       <section className="container-wide pb-20">
         <div className="overflow-hidden rounded-2xl border bg-secondary text-secondary-foreground">
           <div className="grid gap-6 p-8 md:grid-cols-[1fr,auto] md:items-center md:p-12">
             <div>
               <span className="text-xs font-semibold uppercase tracking-widest text-primary">
-                Espace professionnels
+                Conseil en magasin
               </span>
               <h2 className="mt-2 font-display text-2xl font-bold sm:text-3xl">
-                Équipement, maintenance et parc informatique pour entreprises et collectivités.
+                Un doute sur un produit, une panne ou une disponibilité ?
               </h2>
               <p className="mt-3 max-w-2xl text-secondary-foreground/70">
-                Devis matériel, installation, contrats de maintenance, imprimantes, réseau,
-                logiciels. Un interlocuteur dédié à votre structure.
+                La démo privilégie le contact direct : appel, email, réservation et passage en
+                magasin. C'est plus fidèle à une enseigne locale déjà connue.
               </p>
             </div>
             <div className="flex flex-wrap gap-3">
               <Button asChild size="lg">
-                <Link to="/professionnels">
-                  <Briefcase className="h-4 w-4" /> Demander un devis
+                <Link to="/contact">
+                  <ShoppingBag className="h-4 w-4" /> Contacter le magasin
                 </Link>
               </Button>
               <Button
@@ -324,20 +368,23 @@ function HomePage() {
   );
 }
 
-type AppRoute = "/" | "/catalogue" | "/sav" | "/professionnels" | "/magasins" | "/contact";
+type AppRoute = "/" | "/catalogue" | "/sav" | "/magasins" | "/contact";
 
 function QuickAction({
   to,
+  search,
   icon: Icon,
   label,
 }: {
   to: AppRoute;
+  search?: Record<string, string | boolean>;
   icon: React.ElementType;
   label: string;
 }) {
   return (
     <Link
       to={to}
+      search={search as never}
       className="flex items-center gap-2 rounded-lg border bg-card px-3 py-2.5 text-sm font-medium shadow-card transition hover:border-primary hover:text-primary"
     >
       <Icon className="h-4 w-4 text-primary" />

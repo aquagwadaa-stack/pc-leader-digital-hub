@@ -76,8 +76,8 @@ function SavPage() {
             Diagnostic, réparation, dépannage.
           </h1>
           <p className="mt-3 max-w-2xl text-secondary-foreground/70">
-            Atelier SAV à Jarry. Dépôt possible dans nos 3 magasins. Toutes marques, particuliers et
-            professionnels.
+            SAV à Jarry et Dothémare. Dépôt possible dans nos 3 magasins. Toutes marques,
+            particuliers et professionnels.
           </p>
         </div>
       </section>
@@ -240,11 +240,13 @@ function SavPage() {
 
           <div className="rounded-xl border bg-secondary p-5 text-secondary-foreground">
             <Clock className="h-5 w-5 text-primary" />
-            <h3 className="mt-2 font-display font-semibold">Atelier SAV - Jarry</h3>
+            <h3 className="mt-2 font-display font-semibold">Ateliers SAV</h3>
             <p className="mt-2 text-sm text-secondary-foreground/70">
-              42 rue de l'Industrie prolongée
+              404 rue de l'Industrie
               <br />
               Z.I. Jarry, 97122 Baie-Mahault
+              <br />
+              Dothémare, Les Abymes
             </p>
             <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-primary">
               Horaires SAV

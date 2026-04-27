@@ -28,16 +28,23 @@ export function ProductCard({ product, onReserve }: Props) {
           }}
           className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
         />
-        {product.isNew && (
-          <span className="absolute left-3 top-3 rounded-md bg-primary px-2 py-0.5 text-xs font-semibold text-primary-foreground">
-            Nouveau
-          </span>
-        )}
-        {product.popular && !product.isNew && (
-          <span className="absolute left-3 top-3 rounded-md bg-secondary px-2 py-0.5 text-xs font-semibold text-secondary-foreground">
-            Populaire
-          </span>
-        )}
+        <div className="absolute left-3 top-3 flex flex-col gap-1">
+          {product.isNew && (
+            <span className="rounded-md bg-primary px-2 py-0.5 text-xs font-semibold text-primary-foreground">
+              Nouveau
+            </span>
+          )}
+          {product.oldPrice && (
+            <span className="rounded-md bg-warning px-2 py-0.5 text-xs font-semibold text-warning-foreground">
+              Promo
+            </span>
+          )}
+          {product.popular && !product.isNew && !product.oldPrice && (
+            <span className="rounded-md bg-secondary px-2 py-0.5 text-xs font-semibold text-secondary-foreground">
+              Populaire
+            </span>
+          )}
+        </div>
       </Link>
       <div className="flex flex-1 flex-col gap-3 p-4">
         <div>

@@ -10,7 +10,7 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Contactez PC Leader Caraïbes par téléphone, email ou formulaire. Achat, stock, SAV ou devis pro.",
+          "Contactez PC Leader Caraïbes par téléphone, email ou formulaire. Achat, stock, SAV, réservation ou demande spécifique.",
       },
     ],
   }),
@@ -60,7 +60,7 @@ function ContactPage() {
                   <option>Achat / conseil produit</option>
                   <option>Vérification de stock</option>
                   <option>SAV / réparation</option>
-                  <option>Devis professionnel</option>
+                  <option>Demande de devis</option>
                   <option>Autre</option>
                 </select>
               </div>

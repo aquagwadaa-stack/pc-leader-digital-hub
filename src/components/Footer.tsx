@@ -14,21 +14,26 @@ export function Footer() {
             <span className="font-display text-lg font-bold">PC Leader Caraïbes</span>
           </div>
           <p className="mt-3 text-sm text-secondary-foreground/70">
-            Référence informatique en Guadeloupe depuis 1998. Vente, conseil, SAV et solutions pour
-            particuliers et professionnels.
+            Revendeur agréé Apple et référence informatique en Guadeloupe depuis 1998. Vente,
+            conseil, SAV, pièces détachées et consommables.
           </p>
         </div>
         <div>
           <h4 className="font-display font-semibold">Boutique</h4>
           <ul className="mt-3 space-y-2 text-sm text-secondary-foreground/70">
             <li>
-              <Link to="/catalogue" className="hover:text-primary">
-                Catalogue
+              <Link to="/catalogue" search={{ category: "apple" }} className="hover:text-primary">
+                Produits Apple
               </Link>
             </li>
             <li>
-              <Link to="/professionnels" className="hover:text-primary">
-                Espace pros
+              <Link to="/catalogue" search={{ newOnly: true }} className="hover:text-primary">
+                Nouveautés
+              </Link>
+            </li>
+            <li>
+              <Link to="/catalogue" search={{ promo: true }} className="hover:text-primary">
+                Promotions
               </Link>
             </li>
             <li>
@@ -63,6 +68,11 @@ export function Footer() {
             <li>
               <Link to="/contact" className="text-primary hover:underline">
                 Formulaire de contact
+              </Link>
+            </li>
+            <li>
+              <Link to="/mentions-legales" className="hover:text-primary">
+                Mentions légales
               </Link>
             </li>
           </ul>

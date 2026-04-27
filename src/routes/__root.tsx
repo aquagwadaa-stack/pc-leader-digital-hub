@@ -30,15 +30,18 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "PC Leader Caraïbes — Informatique et SAV en Guadeloupe" },
+      { title: "PC Leader Caraïbes — Revendeur Apple agréé et informatique en Guadeloupe" },
       {
         name: "description",
         content:
-          "Vente, conseil et SAV informatique en Guadeloupe. Ordinateurs, Apple, smartphones, imprimantes. 3 magasins : Jarry, Dothémare, Le Moule.",
+          "Revendeur agréé Apple, vente informatique, téléphonie, multimédia, consommables et SAV en Guadeloupe. 3 magasins : Jarry, Dothémare, Le Moule.",
       },
       { name: "author", content: "PC Leader Caraïbes" },
       { property: "og:title", content: "PC Leader Caraïbes" },
-      { property: "og:description", content: "Référence informatique en Guadeloupe depuis 1998." },
+      {
+        property: "og:description",
+        content: "Revendeur agréé Apple, informatique, téléphonie et SAV en Guadeloupe.",
+      },
       { property: "og:type", content: "website" },
     ],
     links: [

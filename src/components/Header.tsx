@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
-import { Menu, Search, Phone, MapPin, X, Wrench, Briefcase } from "lucide-react";
+import { Apple, Menu, Search, Phone, MapPin, X, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { categories } from "@/data/products";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
   { to: "/catalogue", label: "Catalogue" },
+  { to: "/catalogue", label: "Nouveautés", search: { newOnly: true } },
+  { to: "/catalogue", label: "Promotions", search: { promo: true } },
   { to: "/sav", label: "SAV" },
-  { to: "/professionnels", label: "Pros" },
   { to: "/magasins", label: "Magasins" },
   { to: "/contact", label: "Contact" },
 ] as const;
@@ -35,7 +36,7 @@ export function Header() {
               <MapPin className="h-3.5 w-3.5" /> Jarry · Dothémare · Le Moule
             </span>
             <span className="opacity-50">|</span>
-            <span>Référence informatique en Guadeloupe depuis 1998</span>
+            <span>Revendeur agréé Apple · informatique, téléphonie, multimédia, SAV</span>
           </div>
           <a
             href="tel:0590326363"
@@ -79,9 +80,9 @@ export function Header() {
             </Link>
           </Button>
           <Button asChild variant="ghost" size="sm">
-            <Link to="/professionnels">
-              <Briefcase className="h-4 w-4" />
-              Devis pro
+            <Link to="/catalogue" search={{ category: "apple" }}>
+              <Apple className="h-4 w-4" />
+              Apple agréé
             </Link>
           </Button>
         </div>
@@ -100,10 +101,12 @@ export function Header() {
         <div className="container-wide flex h-11 items-center gap-1 overflow-x-auto">
           {navLinks.map((l) => {
             const active = location.pathname === l.to || location.pathname.startsWith(l.to + "/");
+            const linkSearch = "search" in l ? (l.search as never) : undefined;
             return (
               <Link
-                key={l.to}
+                key={l.label}
                 to={l.to}
+                search={linkSearch}
                 className={cn(
                   "rounded-md px-3 py-1.5 text-sm font-medium transition",
                   active ? "bg-accent text-accent-foreground" : "text-foreground hover:bg-muted",
@@ -143,16 +146,20 @@ export function Header() {
               />
             </form>
             <div className="grid gap-1">
-              {navLinks.map((l) => (
-                <Link
-                  key={l.to}
-                  to={l.to}
-                  onClick={() => setOpen(false)}
-                  className="rounded-md px-3 py-2 text-sm font-medium hover:bg-muted"
-                >
-                  {l.label}
-                </Link>
-              ))}
+              {navLinks.map((l) => {
+                const linkSearch = "search" in l ? (l.search as never) : undefined;
+                return (
+                  <Link
+                    key={l.label}
+                    to={l.to}
+                    search={linkSearch}
+                    onClick={() => setOpen(false)}
+                    className="rounded-md px-3 py-2 text-sm font-medium hover:bg-muted"
+                  >
+                    {l.label}
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </div>

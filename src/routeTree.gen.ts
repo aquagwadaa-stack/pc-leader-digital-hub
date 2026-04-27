@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as StockRouteImport } from './routes/stock'
 import { Route as SavRouteImport } from './routes/sav'
 import { Route as ProfessionnelsRouteImport } from './routes/professionnels'
+import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
 import { Route as MagasinsRouteImport } from './routes/magasins'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CatalogueRouteImport } from './routes/catalogue'
@@ -31,6 +32,11 @@ const SavRoute = SavRouteImport.update({
 const ProfessionnelsRoute = ProfessionnelsRouteImport.update({
   id: '/professionnels',
   path: '/professionnels',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MentionsLegalesRoute = MentionsLegalesRouteImport.update({
+  id: '/mentions-legales',
+  path: '/mentions-legales',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MagasinsRoute = MagasinsRouteImport.update({
@@ -64,6 +70,7 @@ export interface FileRoutesByFullPath {
   '/catalogue': typeof CatalogueRoute
   '/contact': typeof ContactRoute
   '/magasins': typeof MagasinsRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
   '/professionnels': typeof ProfessionnelsRoute
   '/sav': typeof SavRoute
   '/stock': typeof StockRoute
@@ -74,6 +81,7 @@ export interface FileRoutesByTo {
   '/catalogue': typeof CatalogueRoute
   '/contact': typeof ContactRoute
   '/magasins': typeof MagasinsRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
   '/professionnels': typeof ProfessionnelsRoute
   '/sav': typeof SavRoute
   '/stock': typeof StockRoute
@@ -85,6 +93,7 @@ export interface FileRoutesById {
   '/catalogue': typeof CatalogueRoute
   '/contact': typeof ContactRoute
   '/magasins': typeof MagasinsRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
   '/professionnels': typeof ProfessionnelsRoute
   '/sav': typeof SavRoute
   '/stock': typeof StockRoute
@@ -97,6 +106,7 @@ export interface FileRouteTypes {
     | '/catalogue'
     | '/contact'
     | '/magasins'
+    | '/mentions-legales'
     | '/professionnels'
     | '/sav'
     | '/stock'
@@ -107,6 +117,7 @@ export interface FileRouteTypes {
     | '/catalogue'
     | '/contact'
     | '/magasins'
+    | '/mentions-legales'
     | '/professionnels'
     | '/sav'
     | '/stock'
@@ -117,6 +128,7 @@ export interface FileRouteTypes {
     | '/catalogue'
     | '/contact'
     | '/magasins'
+    | '/mentions-legales'
     | '/professionnels'
     | '/sav'
     | '/stock'
@@ -128,6 +140,7 @@ export interface RootRouteChildren {
   CatalogueRoute: typeof CatalogueRoute
   ContactRoute: typeof ContactRoute
   MagasinsRoute: typeof MagasinsRoute
+  MentionsLegalesRoute: typeof MentionsLegalesRoute
   ProfessionnelsRoute: typeof ProfessionnelsRoute
   SavRoute: typeof SavRoute
   StockRoute: typeof StockRoute
@@ -155,6 +168,13 @@ declare module '@tanstack/react-router' {
       path: '/professionnels'
       fullPath: '/professionnels'
       preLoaderRoute: typeof ProfessionnelsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mentions-legales': {
+      id: '/mentions-legales'
+      path: '/mentions-legales'
+      fullPath: '/mentions-legales'
+      preLoaderRoute: typeof MentionsLegalesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/magasins': {
@@ -200,6 +220,7 @@ const rootRouteChildren: RootRouteChildren = {
   CatalogueRoute: CatalogueRoute,
   ContactRoute: ContactRoute,
   MagasinsRoute: MagasinsRoute,
+  MentionsLegalesRoute: MentionsLegalesRoute,
   ProfessionnelsRoute: ProfessionnelsRoute,
   SavRoute: SavRoute,
   StockRoute: StockRoute,

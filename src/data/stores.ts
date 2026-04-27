@@ -18,7 +18,7 @@ export const stores: Store[] = [
     name: "PC Leader Jarry",
     shortName: "Jarry",
     city: "Baie-Mahault",
-    address: "42 rue de l'Industrie prolongée, Z.I. Jarry",
+    address: "404 rue de l'Industrie, Z.I. Jarry",
     postalCode: "97122",
     phone: "05 90 32 63 63",
     hours: [
@@ -37,8 +37,12 @@ export const stores: Store[] = [
     address: "C.C. La Coulée Verte, ZAC Dothémare",
     postalCode: "97139",
     phone: "05 90 32 63 63",
-    hours: [{ label: "Lun. au sam.", value: "9h00 – 18h30" }],
-    hasSav: false,
+    hours: [
+      { label: "Boutique - Lun. au sam.", value: "9h00 – 18h30" },
+      { label: "SAV - Lun. au ven.", value: "9h00 – 14h00" },
+      { label: "SAV - Samedi", value: "9h00 – 12h30" },
+    ],
+    hasSav: true,
   },
   {
     id: "lemoule",
