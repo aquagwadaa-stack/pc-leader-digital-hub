@@ -85,14 +85,14 @@ function HomePage() {
               Revendeur agréé Apple · Informatique en Guadeloupe depuis 1998
             </span>
             <h1 className="mt-4 font-display text-3xl font-bold leading-[1.1] sm:text-5xl lg:text-6xl">
-              Le magasin high-tech local,
+              Informatique, Apple,
               <br />
-              <span className="text-primary">enfin représenté correctement.</span>
+              <span className="text-primary">SAV et multimédia en Guadeloupe.</span>
             </h1>
             <p className="mt-4 max-w-xl text-base text-muted-foreground sm:text-lg">
-              Apple, PC portables, téléphones, imprimantes, consoles, pièces détachées et
-              consommables. Une vitrine claire avec nouveautés, promotions, stock par magasin et
-              SAV.
+              Ordinateurs, produits Apple, téléphones, imprimantes, consoles, pièces détachées et
+              consommables. Retrouvez les nouveautés, promotions, disponibilités par magasin et
+              services SAV.
             </p>
 
             <form
@@ -180,11 +180,11 @@ function HomePage() {
               Produits Apple · Revendeur agréé
             </span>
             <h2 className="mt-3 font-display text-2xl font-bold sm:text-3xl">
-              Une entrée Apple assumée, comme sur le site officiel actuel.
+              Mac, iPhone, iPad, Watch et AirPods disponibles en magasin.
             </h2>
             <p className="mt-2 max-w-2xl text-secondary-foreground/70">
-              Mac, MacBook, iPad, iPhone, Watch et AirPods sont regroupés dans un univers clair,
-              avec les disponibilités par magasin et une demande de réservation.
+              Retrouvez l'univers Apple avec les disponibilités par magasin, les accessoires
+              compatibles et la possibilité de préparer votre passage en boutique.
             </p>
           </div>
           <Button asChild size="lg">
@@ -234,7 +234,7 @@ function HomePage() {
           <div>
             <h2 className="font-display text-3xl font-bold">Nouveautés & promotions</h2>
             <p className="mt-1 text-muted-foreground">
-              Deux entrées déjà présentes dans l'univers PC Leader, mais plus lisibles.
+              Les dernières références et les offres à saisir dans vos magasins PC Leader.
             </p>
           </div>
           <Button asChild variant="outline">
@@ -334,8 +334,8 @@ function HomePage() {
                 Un doute sur un produit, une panne ou une disponibilité ?
               </h2>
               <p className="mt-3 max-w-2xl text-secondary-foreground/70">
-                La démo privilégie le contact direct : appel, email, réservation et passage en
-                magasin. C'est plus fidèle à une enseigne locale déjà connue.
+                Nos équipes vous orientent vers le bon produit, vérifient les disponibilités et vous
+                accompagnent pour le retrait ou le dépôt SAV.
               </p>
             </div>
             <div className="flex flex-wrap gap-3">

@@ -18,13 +18,10 @@ export const Route = createFileRoute("/mentions-legales")({
 function LegalPage() {
   return (
     <div className="container-wide py-12">
-      <span className="inline-flex items-center rounded-full bg-accent px-3 py-1 text-xs font-semibold text-accent-foreground">
-        Démo à valider avant mise en ligne officielle
-      </span>
-      <h1 className="mt-4 font-display text-3xl font-bold sm:text-4xl">Mentions légales</h1>
+      <h1 className="font-display text-3xl font-bold sm:text-4xl">Mentions légales</h1>
       <p className="mt-2 max-w-2xl text-muted-foreground">
-        Cette page reprend les informations publiques affichées sur le site actuel de PC Leader.
-        Elles devront être confirmées par l'entreprise avant publication définitive.
+        Informations relatives à l'éditeur du site, aux coordonnées de l'entreprise et à
+        l'hébergement.
       </p>
 
       <div className="mt-8 grid gap-5 lg:grid-cols-2">

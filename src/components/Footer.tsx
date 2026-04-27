@@ -81,9 +81,7 @@ export function Footer() {
       <div className="border-t border-secondary-foreground/10">
         <div className="container-wide flex flex-col items-start justify-between gap-2 py-4 text-xs text-secondary-foreground/60 md:flex-row md:items-center">
           <p>© {new Date().getFullYear()} PC Leader Caraïbes — Tous droits réservés</p>
-          <span className="rounded-md border border-secondary-foreground/20 px-2 py-0.5">
-            Démo conceptuelle
-          </span>
+          <span>Informatique, téléphonie, multimédia et SAV en Guadeloupe</span>
         </div>
       </div>
     </footer>

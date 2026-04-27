@@ -58,7 +58,6 @@ function SavPage() {
   const track = (e: React.FormEvent) => {
     e.preventDefault();
     if (!trackId.trim()) return;
-    // Démo
     const step = (trackId.length % 3) + 1;
     const labels = ["Diagnostic en cours", "Réparation en atelier", "Prêt à récupérer"];
     setTrackResult({ status: labels[step - 1], step });
@@ -211,7 +210,7 @@ function SavPage() {
               <Search className="h-4 w-4 text-primary" /> Suivre une demande SAV
             </h3>
             <p className="mt-1 text-xs text-muted-foreground">
-              Saisissez votre numéro de dossier (démo).
+              Saisissez votre numéro de dossier SAV.
             </p>
             <form onSubmit={track} className="mt-3 flex gap-2">
               <input
