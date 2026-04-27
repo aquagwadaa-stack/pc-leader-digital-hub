@@ -52,7 +52,7 @@ function ProductPage() {
           <p className="text-sm uppercase tracking-wide text-muted-foreground">{product.brand}</p>
           <h1 className="mt-1 font-display text-3xl font-bold sm:text-4xl">{product.name}</h1>
           <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
-            {product.shortSpecs.map((s) => <li key={s}>• {s}</li>)}
+            {product.shortSpecs.map((s: string) => <li key={s}>• {s}</li>)}
           </ul>
 
           <div className="mt-6 flex items-end gap-3">
@@ -114,7 +114,7 @@ function ProductPage() {
         <div className="mt-4 overflow-hidden rounded-xl border bg-card shadow-card">
           <table className="w-full text-sm">
             <tbody>
-              {product.specs.map((s, i) => (
+              {product.specs.map((s: { label: string; value: string }, i: number) => (
                 <tr key={s.label} className={i % 2 ? "bg-surface" : ""}>
                   <td className="w-1/3 px-4 py-3 font-medium text-muted-foreground">{s.label}</td>
                   <td className="px-4 py-3">{s.value}</td>
