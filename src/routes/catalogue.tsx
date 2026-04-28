@@ -114,27 +114,6 @@ function CataloguePage() {
         </p>
       </div>
 
-      <div className="mb-4 flex flex-wrap gap-2">
-        <QuickFilter
-          active={search.category === "apple"}
-          icon={Apple}
-          label="Produits Apple"
-          onClick={() => update({ category: search.category === "apple" ? "" : "apple" })}
-        />
-        <QuickFilter
-          active={search.newOnly}
-          icon={Sparkles}
-          label="Nouveautés"
-          onClick={() => update({ newOnly: !search.newOnly })}
-        />
-        <QuickFilter
-          active={search.promo}
-          icon={Tags}
-          label="Promotions"
-          onClick={() => update({ promo: !search.promo })}
-        />
-      </div>
-
       <div className="relative mb-4">
         <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
         <input
