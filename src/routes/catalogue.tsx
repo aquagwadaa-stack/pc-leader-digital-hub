@@ -287,33 +287,6 @@ function FilterGroup({ label, children }: { label: string; children: React.React
   );
 }
 
-function QuickFilter({
-  active,
-  icon: Icon,
-  label,
-  onClick,
-}: {
-  active: boolean;
-  icon: React.ElementType;
-  label: string;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={`inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm font-medium transition ${
-        active
-          ? "border-primary bg-primary text-primary-foreground"
-          : "bg-card hover:border-primary"
-      }`}
-    >
-      <Icon className="h-4 w-4" />
-      {label}
-    </button>
-  );
-}
-
 function RadioPill({
   name,
   value,
