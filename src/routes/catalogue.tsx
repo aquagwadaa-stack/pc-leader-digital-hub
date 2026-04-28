@@ -1,47 +1,42 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { z } from "zod";
-import { Apple, Search, SlidersHorizontal, Sparkles, Tags, X } from "lucide-react";
+import { Search, SlidersHorizontal, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/ProductCard";
 import { ReservationModal } from "@/components/ReservationModal";
 import { products, categories, type Product, type CategoryId } from "@/data/products";
 import { stores, type StoreId } from "@/data/stores";
 
-const searchSchema = z.object({
-  q: z.preprocess(toStringValue, z.string()).catch(""),
-  category: z.preprocess(toStringValue, z.string()).catch(""),
-  brand: z.preprocess(toStringValue, z.string()).catch(""),
-  store: z.preprocess(toStringValue, z.string()).catch(""),
-  available: z.preprocess(toBooleanValue, z.boolean()).catch(false),
-  newOnly: z.preprocess(toBooleanValue, z.boolean()).catch(false),
-  promo: z.preprocess(toBooleanValue, z.boolean()).catch(false),
-  max: z.preprocess(toNumberValue, z.number()).catch(0),
-});
-
-type CatalogueSearch = z.infer<typeof searchSchema>;
-
 function firstValue(value: unknown) {
   return Array.isArray(value) ? value[0] : value;
 }
-
 function toStringValue(value: unknown) {
   const current = firstValue(value);
   return typeof current === "string" ? current : "";
 }
-
 function toBooleanValue(value: unknown) {
   const current = firstValue(value);
   return current === true || current === "true";
 }
-
 function toNumberValue(value: unknown) {
   const current = Number(firstValue(value));
   return Number.isFinite(current) ? current : 0;
 }
 
+const searchSchema = z.object({
+  q: z.preprocess(toStringValue, z.string()).catch("").default(""),
+  category: z.preprocess(toStringValue, z.string()).catch("").default(""),
+  brand: z.preprocess(toStringValue, z.string()).catch("").default(""),
+  store: z.preprocess(toStringValue, z.string()).catch("").default(""),
+  available: z.preprocess(toBooleanValue, z.boolean()).catch(false).default(false),
+  newOnly: z.preprocess(toBooleanValue, z.boolean()).catch(false).default(false),
+  promo: z.preprocess(toBooleanValue, z.boolean()).catch(false).default(false),
+  max: z.preprocess(toNumberValue, z.number()).catch(0).default(0),
+});
+
 export const Route = createFileRoute("/catalogue")({
-  validateSearch: (search): CatalogueSearch => searchSchema.parse(search),
+  validateSearch: searchSchema,
   head: () => ({
     meta: [
       { title: "Catalogue, nouveautés et stock magasin — PC Leader Caraïbes" },
