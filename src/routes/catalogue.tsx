@@ -1,47 +1,42 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { z } from "zod";
-import { Apple, Search, SlidersHorizontal, Sparkles, Tags, X } from "lucide-react";
+import { Search, SlidersHorizontal, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/ProductCard";
 import { ReservationModal } from "@/components/ReservationModal";
 import { products, categories, type Product, type CategoryId } from "@/data/products";
 import { stores, type StoreId } from "@/data/stores";
 
-const searchSchema = z.object({
-  q: z.preprocess(toStringValue, z.string()).catch(""),
-  category: z.preprocess(toStringValue, z.string()).catch(""),
-  brand: z.preprocess(toStringValue, z.string()).catch(""),
-  store: z.preprocess(toStringValue, z.string()).catch(""),
-  available: z.preprocess(toBooleanValue, z.boolean()).catch(false),
-  newOnly: z.preprocess(toBooleanValue, z.boolean()).catch(false),
-  promo: z.preprocess(toBooleanValue, z.boolean()).catch(false),
-  max: z.preprocess(toNumberValue, z.number()).catch(0),
-});
-
-type CatalogueSearch = z.infer<typeof searchSchema>;
-
 function firstValue(value: unknown) {
   return Array.isArray(value) ? value[0] : value;
 }
-
 function toStringValue(value: unknown) {
   const current = firstValue(value);
   return typeof current === "string" ? current : "";
 }
-
 function toBooleanValue(value: unknown) {
   const current = firstValue(value);
   return current === true || current === "true";
 }
-
 function toNumberValue(value: unknown) {
   const current = Number(firstValue(value));
   return Number.isFinite(current) ? current : 0;
 }
 
+const searchSchema = z.object({
+  q: z.preprocess(toStringValue, z.string()).catch("").default(""),
+  category: z.preprocess(toStringValue, z.string()).catch("").default(""),
+  brand: z.preprocess(toStringValue, z.string()).catch("").default(""),
+  store: z.preprocess(toStringValue, z.string()).catch("").default(""),
+  available: z.preprocess(toBooleanValue, z.boolean()).catch(false).default(false),
+  newOnly: z.preprocess(toBooleanValue, z.boolean()).catch(false).default(false),
+  promo: z.preprocess(toBooleanValue, z.boolean()).catch(false).default(false),
+  max: z.preprocess(toNumberValue, z.number()).catch(0).default(0),
+});
+
 export const Route = createFileRoute("/catalogue")({
-  validateSearch: (search): CatalogueSearch => searchSchema.parse(search),
+  validateSearch: searchSchema,
   head: () => ({
     meta: [
       { title: "Catalogue, nouveautés et stock magasin — PC Leader Caraïbes" },
@@ -117,27 +112,6 @@ function CataloguePage() {
           {filtered.length} produit{filtered.length > 1 ? "s" : ""} trouvé
           {filtered.length > 1 ? "s" : ""}. Stock indicatif visible sur chaque fiche.
         </p>
-      </div>
-
-      <div className="mb-4 flex flex-wrap gap-2">
-        <QuickFilter
-          active={search.category === "apple"}
-          icon={Apple}
-          label="Produits Apple"
-          onClick={() => update({ category: search.category === "apple" ? "" : "apple" })}
-        />
-        <QuickFilter
-          active={search.newOnly}
-          icon={Sparkles}
-          label="Nouveautés"
-          onClick={() => update({ newOnly: !search.newOnly })}
-        />
-        <QuickFilter
-          active={search.promo}
-          icon={Tags}
-          label="Promotions"
-          onClick={() => update({ promo: !search.promo })}
-        />
       </div>
 
       <div className="relative mb-4">
@@ -310,33 +284,6 @@ function FilterGroup({ label, children }: { label: string; children: React.React
       </p>
       <div className="flex flex-wrap gap-1.5">{children}</div>
     </div>
-  );
-}
-
-function QuickFilter({
-  active,
-  icon: Icon,
-  label,
-  onClick,
-}: {
-  active: boolean;
-  icon: React.ElementType;
-  label: string;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={`inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm font-medium transition ${
-        active
-          ? "border-primary bg-primary text-primary-foreground"
-          : "bg-card hover:border-primary"
-      }`}
-    >
-      <Icon className="h-4 w-4" />
-      {label}
-    </button>
   );
 }
 

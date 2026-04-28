@@ -1,14 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
-import { Apple, Menu, Search, Phone, MapPin, X, Wrench } from "lucide-react";
+import { Menu, Search, Phone, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { categories } from "@/data/products";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
   { to: "/catalogue", label: "Catalogue" },
-  { to: "/catalogue", label: "Nouveautés", search: { newOnly: true } },
-  { to: "/catalogue", label: "Promotions", search: { promo: true } },
   { to: "/sav", label: "SAV" },
   { to: "/magasins", label: "Magasins" },
   { to: "/contact", label: "Contact" },
@@ -28,32 +25,12 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur">
-      {/* Top bar */}
-      <div className="hidden border-b bg-secondary text-secondary-foreground md:block">
-        <div className="container-wide flex h-9 items-center justify-between text-xs">
-          <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1.5">
-              <MapPin className="h-3.5 w-3.5" /> Jarry · Dothémare · Le Moule
-            </span>
-            <span className="opacity-50">|</span>
-            <span>Revendeur agréé Apple · informatique, téléphonie, multimédia, SAV</span>
-          </div>
-          <a
-            href="tel:0590326363"
-            className="flex items-center gap-1.5 font-medium hover:text-primary"
-          >
-            <Phone className="h-3.5 w-3.5" /> 05 90 32 63 63
-          </a>
-        </div>
-      </div>
-
-      {/* Main bar */}
-      <div className="container-wide flex h-16 items-center gap-4">
+      <div className="container-wide flex h-16 items-center gap-6">
         <Link to="/" className="flex items-center gap-2 shrink-0">
           <span className="grid h-9 w-9 place-items-center rounded-lg gradient-brand text-primary-foreground font-display font-bold">
             PC
           </span>
-          <span className="hidden font-display text-lg font-bold leading-tight sm:block">
+          <span className="hidden font-display text-base font-bold leading-tight sm:block">
             PC Leader
             <span className="block text-[10px] font-medium uppercase tracking-widest text-muted-foreground">
               Caraïbes
@@ -61,80 +38,56 @@ export function Header() {
           </span>
         </Link>
 
-        {/* Search */}
-        <form onSubmit={submitSearch} className="relative hidden flex-1 max-w-xl md:block">
-          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-          <input
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-            placeholder="Rechercher : MacBook, iPhone, imprimante..."
-            className="h-10 w-full rounded-lg border bg-surface pl-9 pr-3 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
-          />
-        </form>
-
-        <div className="ml-auto hidden items-center gap-2 lg:flex">
-          <Button asChild variant="ghost" size="sm">
-            <Link to="/sav">
-              <Wrench className="h-4 w-4" />
-              SAV
-            </Link>
-          </Button>
-          <Button asChild variant="ghost" size="sm">
-            <Link to="/catalogue" search={{ category: "apple" }}>
-              <Apple className="h-4 w-4" />
-              Apple agréé
-            </Link>
-          </Button>
-        </div>
-
-        <button
-          aria-label="Menu"
-          onClick={() => setOpen((v) => !v)}
-          className="ml-auto inline-flex h-10 w-10 items-center justify-center rounded-md border lg:hidden"
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
-      </div>
-
-      {/* Nav */}
-      <nav className="hidden border-t bg-background lg:block">
-        <div className="container-wide flex h-11 items-center gap-1 overflow-x-auto">
+        <nav className="hidden items-center gap-1 md:flex">
           {navLinks.map((l) => {
-            const active = location.pathname === l.to || location.pathname.startsWith(l.to + "/");
-            const linkSearch = "search" in l ? (l.search as never) : undefined;
+            const active =
+              location.pathname === l.to || location.pathname.startsWith(l.to + "/");
             return (
               <Link
                 key={l.label}
                 to={l.to}
-                search={linkSearch}
                 className={cn(
                   "rounded-md px-3 py-1.5 text-sm font-medium transition",
-                  active ? "bg-accent text-accent-foreground" : "text-foreground hover:bg-muted",
+                  active ? "text-primary" : "text-foreground hover:text-primary",
                 )}
               >
                 {l.label}
               </Link>
             );
           })}
-          <span className="mx-2 h-5 w-px bg-border" />
-          <div className="flex items-center gap-1 overflow-x-auto">
-            {categories.slice(0, 7).map((c) => (
-              <Link
-                key={c.id}
-                to="/catalogue"
-                search={{ category: c.id }}
-                className="whitespace-nowrap rounded-md px-2.5 py-1 text-xs text-muted-foreground hover:text-foreground hover:bg-muted"
-              >
-                {c.name}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </nav>
+        </nav>
 
-      {/* Mobile menu */}
+        <form
+          onSubmit={submitSearch}
+          className="relative ml-auto hidden flex-1 max-w-sm md:block"
+        >
+          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+          <input
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            placeholder="Rechercher un produit…"
+            className="h-10 w-full rounded-lg border bg-surface pl-9 pr-3 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+          />
+        </form>
+
+        <Button asChild variant="outline" size="sm" className="hidden lg:inline-flex">
+          <a href="tel:0590326363">
+            <Phone className="h-4 w-4" />
+            05 90 32 63 63
+          </a>
+        </Button>
+
+        <button
+          aria-label="Menu"
+          onClick={() => setOpen((v) => !v)}
+          className="ml-auto inline-flex h-10 w-10 items-center justify-center rounded-md border md:hidden"
+        >
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+      </div>
+
       {open && (
-        <div className="border-t lg:hidden">
+        <div className="border-t md:hidden">
           <div className="container-wide space-y-2 py-3">
             <form onSubmit={submitSearch} className="relative">
               <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
@@ -146,20 +99,22 @@ export function Header() {
               />
             </form>
             <div className="grid gap-1">
-              {navLinks.map((l) => {
-                const linkSearch = "search" in l ? (l.search as never) : undefined;
-                return (
-                  <Link
-                    key={l.label}
-                    to={l.to}
-                    search={linkSearch}
-                    onClick={() => setOpen(false)}
-                    className="rounded-md px-3 py-2 text-sm font-medium hover:bg-muted"
-                  >
-                    {l.label}
-                  </Link>
-                );
-              })}
+              {navLinks.map((l) => (
+                <Link
+                  key={l.label}
+                  to={l.to}
+                  onClick={() => setOpen(false)}
+                  className="rounded-md px-3 py-2 text-sm font-medium hover:bg-muted"
+                >
+                  {l.label}
+                </Link>
+              ))}
+              <a
+                href="tel:0590326363"
+                className="rounded-md px-3 py-2 text-sm font-medium text-primary"
+              >
+                05 90 32 63 63
+              </a>
             </div>
           </div>
         </div>
