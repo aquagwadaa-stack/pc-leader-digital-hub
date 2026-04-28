@@ -14,33 +14,16 @@ export function Footer() {
             <span className="font-display text-lg font-bold">PC Leader Caraïbes</span>
           </div>
           <p className="mt-3 text-sm text-secondary-foreground/70">
-            Revendeur agréé Apple et référence informatique en Guadeloupe depuis 1998. Vente,
-            conseil, SAV, pièces détachées et consommables.
+            Revendeur Apple agréé. Informatique, téléphonie et SAV en Guadeloupe depuis 1998.
           </p>
         </div>
         <div>
-          <h4 className="font-display font-semibold">Boutique</h4>
+          <h4 className="font-display font-semibold">Navigation</h4>
           <ul className="mt-3 space-y-2 text-sm text-secondary-foreground/70">
-            <li>
-              <Link to="/catalogue" search={{ category: "apple" }} className="hover:text-primary">
-                Produits Apple
-              </Link>
-            </li>
-            <li>
-              <Link to="/catalogue" search={{ newOnly: true }} className="hover:text-primary">
-                Nouveautés
-              </Link>
-            </li>
-            <li>
-              <Link to="/catalogue" search={{ promo: true }} className="hover:text-primary">
-                Promotions
-              </Link>
-            </li>
-            <li>
-              <Link to="/sav" className="hover:text-primary">
-                SAV & réparation
-              </Link>
-            </li>
+            <li><Link to="/catalogue" className="hover:text-primary">Catalogue</Link></li>
+            <li><Link to="/sav" className="hover:text-primary">SAV & réparation</Link></li>
+            <li><Link to="/magasins" className="hover:text-primary">Magasins</Link></li>
+            <li><Link to="/contact" className="hover:text-primary">Contact</Link></li>
           </ul>
         </div>
         <div>
@@ -49,9 +32,7 @@ export function Footer() {
             {stores.map((s) => (
               <li key={s.id} className="flex items-start gap-2">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
-                <span>
-                  {s.shortName} – {s.city}
-                </span>
+                <span>{s.shortName} – {s.city}</span>
               </li>
             ))}
           </ul>
@@ -66,22 +47,15 @@ export function Footer() {
               <Mail className="h-4 w-4" /> contact@pcleader.fr
             </li>
             <li>
-              <Link to="/contact" className="text-primary hover:underline">
-                Formulaire de contact
-              </Link>
-            </li>
-            <li>
-              <Link to="/mentions-legales" className="hover:text-primary">
-                Mentions légales
-              </Link>
+              <Link to="/mentions-legales" className="hover:text-primary">Mentions légales</Link>
             </li>
           </ul>
         </div>
       </div>
       <div className="border-t border-secondary-foreground/10">
         <div className="container-wide flex flex-col items-start justify-between gap-2 py-4 text-xs text-secondary-foreground/60 md:flex-row md:items-center">
-          <p>© {new Date().getFullYear()} PC Leader Caraïbes — Tous droits réservés</p>
-          <span>Informatique, téléphonie, multimédia et SAV en Guadeloupe</span>
+          <p>© {new Date().getFullYear()} PC Leader Caraïbes</p>
+          <span>Informatique & SAV en Guadeloupe</span>
         </div>
       </div>
     </footer>
